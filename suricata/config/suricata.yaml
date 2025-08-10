@@ -1,0 +1,23 @@
+%YAML 1.1
+---
+default-log-dir: /var/log/suricata
+default-rule-path: /var/lib/suricata/rules
+rule-files:
+  - suricata.rules
+  - local.rules
+
+af-packet:
+  - interface: eth0
+
+outputs:
+  - fast:
+      enabled: yes
+      filename: fast.log
+      append: yes
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: eve.json
+      types: [alert, http, dns, tls]
+stats:
+  enabled: no

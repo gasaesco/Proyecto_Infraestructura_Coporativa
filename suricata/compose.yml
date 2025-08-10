@@ -3,14 +3,15 @@ services:
     image: jasonish/suricata:latest
     container_name: suricata
     networks:
-      - lab-net
+      assr-net:
+        aliases: [suricata]
     volumes:
       - ./logs:/var/log/suricata
-      - ./rules:/etc/suricata/rules
-      - ./etc:/etc/suricata/local
-    command: ["/bin/sh","-lc","suricata-update update-sources && suricata-update && exec suricata -i eth0 -k none -l /var/log/suricata"]
+      - ./rules:/var/lib/suricata/rules      # reglas fuera de /etc (evita ro conflicts)
+      - ./config:/etc/suricata               # deja RW la primera vez; luego puedes poner :ro
+    command: ["suricata","-i","eth0","-k","none","-c","/etc/suricata/suricata.yaml","-l","/var/log/suricata"]
     restart: unless-stopped
 
 networks:
-  lab-net:
-    driver: bridge
+  assr-net:
+    external: true
