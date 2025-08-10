@@ -8,6 +8,7 @@ suricata/logs/
 suricata/rules/**
 !suricata/rules/local.rules
 !suricata/rules/README.md
+!suricata/rules/classification.config
 suricata/config/classification.config
 suricata/config/reference.config
 suricata/config/threshold.config
