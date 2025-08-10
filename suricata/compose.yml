@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  suricata:
+    image: jasonish/suricata:latest
+    container_name: suricata
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    command: >
+      sh -c "
+      mkdir -p /var/log/suricata &&
+      suricata -i eth0 -c /etc/suricata/suricata.yaml -D &&
+      tail -F /var/log/suricata/fast.log
+      "
+    volumes:
+      - ./rules:/var/lib/suricata/rules
+      - ./logs:/var/log/suricata
+
+networks:
+  default:
+    name: assr-net
