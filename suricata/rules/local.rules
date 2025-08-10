@@ -1,2 +1,0 @@
-alert icmp any any -> any any (msg:"ICMP test"; sid:1000001; rev:1;)
-alert tcp any any -> $HOME_NET 80 (msg:"SYN a puerto 80"; flags:S; sid:1000003; rev:1;)

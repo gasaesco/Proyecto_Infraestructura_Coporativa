@@ -1,3 +1,0 @@
-rule-files:
-  - suricata.rules
-  - local.rules
