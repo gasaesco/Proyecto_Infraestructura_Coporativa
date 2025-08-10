@@ -4,18 +4,10 @@ suricata/logs/
 # Carpeta de trabajo de Kali
 kali/work/
 
-$lines = @(
-  'suricata/logs/'
-  'suricata/rules/**'
-  '!suricata/rules/local.rules'
-  '!suricata/rules/README.md'
-  'suricata/config/classification.config'
-  'suricata/config/reference.config'
-  'suricata/config/threshold.config'
-)
-$gitignore = ".gitignore"
-if (Test-Path $gitignore) {
-  Add-Content -Path $gitignore -Value ($lines -join "`r`n")
-} else {
-  Set-Content -Path $gitignore -Value ($lines -join "`r`n")
-}
+suricata/logs/
+suricata/rules/**
+!suricata/rules/local.rules
+!suricata/rules/README.md
+suricata/config/classification.config
+suricata/config/reference.config
+suricata/config/threshold.config
