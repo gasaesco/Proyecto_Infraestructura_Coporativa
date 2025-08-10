@@ -2,18 +2,15 @@ services:
   suricata:
     image: jasonish/suricata:latest
     container_name: suricata
-    restart: unless-stopped
-    cap_add: [NET_ADMIN, NET_RAW]
-    command: >
-      sh -c "
-      mkdir -p /var/log/suricata &&
-      suricata -i eth0 -c /etc/suricata/suricata.yaml -D &&
-      tail -F /var/log/suricata/fast.log
-      "
+    networks:
+      - lab-net
     volumes:
-      - ./rules:/var/lib/suricata/rules
       - ./logs:/var/log/suricata
+      - ./rules:/etc/suricata/rules
+      - ./etc:/etc/suricata/local
+    command: ["/bin/sh","-lc","suricata-update update-sources && suricata-update && exec suricata -i eth0 -k none -l /var/log/suricata"]
+    restart: unless-stopped
 
 networks:
-  default:
-    name: assr-net
+  lab-net:
+    driver: bridge
