@@ -1,0 +1,5 @@
+# Logs de Suricata
+suricata/logs/
+
+# Carpeta de trabajo de Kali
+kali/work/
