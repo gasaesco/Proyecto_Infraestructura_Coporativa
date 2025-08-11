@@ -1,0 +1,25 @@
+services:
+  nagios:
+    image: jasonrivers/nagios:latest
+    container_name: nagios
+    hostname: nagios.assr.local
+    ports:
+      - "8080:80"
+    volumes:
+      - ./conf:/opt/nagios/etc
+       - ../suricata/logs:/suricata_logs:ro 
+    environment:
+      - NAGIOS_TIMEZONE=America/Guayaquil
+    dns:
+      - 172.30.0.10
+    networks:
+      assr-net:
+        ipv4_address: 172.30.0.40
+
+networks:
+  assr-net:
+    external: true
+
+# Para acceder a Nagios:
+# Usuario: nagiosadmin
+# Password: nagios

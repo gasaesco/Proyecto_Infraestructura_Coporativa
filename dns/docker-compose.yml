@@ -1,0 +1,22 @@
+services:
+  dns:
+    image: ubuntu/bind9:9.18-22.04_edge
+    container_name: dns
+    hostname: dns.assr.local
+    restart: unless-stopped
+    environment:
+      - TZ=America/Guayaquil
+    ports:
+      # Exponer 53 al host solo si quieres probar desde el host.
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./config:/etc/bind
+      - ./zones:/var/lib/bind
+    networks:
+      assr-net:
+        ipv4_address: 172.30.0.10
+
+networks:
+  assr-net:
+    external: true

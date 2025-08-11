@@ -2,13 +2,20 @@ services:
   suricata:
     image: jasonish/suricata:latest
     container_name: suricata
+    dns:
+      - 172.30.0.10
     networks:
       assr-net:
-        aliases: [suricata]
+        ipv4_address: 172.30.0.30
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
     volumes:
       - ./logs:/var/log/suricata
       - ./rules:/var/lib/suricata/rules      # reglas fuera de /etc (evita ro conflicts)
       - ./config:/etc/suricata               # deja RW la primera vez; luego puedes poner :ro
+      - ./conf:/opt/nagios/etc
+      - ../suricata/logs:/suricata_logs:ro
     command: ["suricata","-i","eth0","-k","none","-c","/etc/suricata/suricata.yaml","-l","/var/log/suricata"]
     restart: unless-stopped
 

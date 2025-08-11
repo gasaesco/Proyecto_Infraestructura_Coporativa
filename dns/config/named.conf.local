@@ -1,0 +1,9 @@
+zone "assr.local" {
+    type master;
+    file "/var/lib/bind/db.assr.local";
+};
+
+zone "0.30.172.in-addr.arpa" {
+    type master;
+    file "/var/lib/bind/db.172.30.0";
+};

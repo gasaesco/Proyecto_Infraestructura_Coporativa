@@ -2,12 +2,17 @@ services:
   kali:
     image: kalilinux/kali-rolling
     container_name: kali
-    hostname: kali
+    hostname: kali.assr.local
     privileged: true
     stdin_open: true
     tty: true
     volumes:
       - ./work:/root/work
+    dns:
+      - 172.30.0.10
+    networks:
+      assr-net:
+        ipv4_address: 172.30.0.20
     command: >
       bash -lc "
       apt-get update &&
@@ -16,5 +21,5 @@ services:
       "
 
 networks:
-  default:
-    name: assr-net
+  assr-net:
+    external: true

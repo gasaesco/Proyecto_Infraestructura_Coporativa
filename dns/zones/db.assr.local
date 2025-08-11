@@ -1,0 +1,13 @@
+$TTL 1h
+@       IN SOA dns.assr.local. admin.assr.local. (
+            2025081001 ; serial
+            1h         ; refresh
+            15m        ; retry
+            1w         ; expire
+            1h )       ; minimum
+        IN NS   dns.assr.local.
+
+dns     IN A    172.30.0.10
+kali    IN A    172.30.0.20
+suricata IN A   172.30.0.30
+nagios  IN A    172.30.0.40

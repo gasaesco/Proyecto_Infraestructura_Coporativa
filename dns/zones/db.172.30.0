@@ -1,0 +1,13 @@
+$TTL 1h
+@       IN SOA dns.assr.local. admin.assr.local. (
+            2025081001 ; serial
+            1h
+            15m
+            1w
+            1h )
+        IN NS   dns.assr.local.
+
+10  IN PTR dns.assr.local.
+20  IN PTR kali.assr.local.
+30  IN PTR suricata.assr.local.
+40  IN PTR nagios.assr.local.
