@@ -19,7 +19,7 @@ services:
       - NET_ADMIN
     restart: unless-stopped
     networks:
-      - infra_net
+      - assr-net
 
 volumes:
   maildata:

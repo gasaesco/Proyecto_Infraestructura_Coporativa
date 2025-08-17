@@ -12,7 +12,7 @@ services:
       - mariadb_data:/var/lib/mysql
     restart: unless-stopped
     networks:
-      - infra_net
+      - assr-net
 
 volumes:
   mariadb_data:

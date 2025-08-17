@@ -11,7 +11,7 @@ services:
       - ./openvpn-data/conf:/etc/openvpn
     restart: unless-stopped
     networks:
-      - infra_net
+      - assr-net
 
 networks:
   assr-net:

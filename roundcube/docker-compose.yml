@@ -21,7 +21,7 @@ services:
       - roundcube_data:/var/roundcube
     restart: unless-stopped
     networks:
-      - infra_net
+      - assr-net
 
 volumes:
   roundcube_data:
