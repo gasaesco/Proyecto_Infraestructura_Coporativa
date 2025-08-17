@@ -11,7 +11,7 @@ dns         IN A   172.30.0.10
 kali        IN A   172.30.0.20
 suricata    IN A   172.30.0.30
 nagios      IN A   172.30.0.40
-mailserver  IN A   172.30.0.50
-openvpn     IN A   172.30.0.60
-roundcube   IN A   172.30.0.70
-mariadb     IN A   172.30.0.80
+mailserver  IN A   172.30.0.4
+openvpn     IN A   172.30.0.3
+roundcube   IN A   172.30.0.5
+mariadb     IN A   172.30.0.2

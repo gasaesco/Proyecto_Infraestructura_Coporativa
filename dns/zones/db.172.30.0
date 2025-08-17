@@ -11,7 +11,7 @@ $TTL 1h
 20  IN PTR kali.assr.local.
 30  IN PTR suricata.assr.local.
 40  IN PTR nagios.assr.local.
-50  IN PTR mailserver.assr.local.
-60  IN PTR mariadb.assr.local.
-70  IN PTR openvpn.assr.local.
-80  IN PTR roundcube.assr.local.
+4  IN PTR mailserver.assr.local.
+2  IN PTR mariadb.assr.local.
+3  IN PTR openvpn.assr.local.
+5  IN PTR roundcube.assr.local.
