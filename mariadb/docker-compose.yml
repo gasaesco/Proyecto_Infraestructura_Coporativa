@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: mariadb
+    hostname: mariadb.assr.local
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+      MYSQL_DATABASE: roundcubemail
+      MYSQL_USER: roundcube
+      MYSQL_PASSWORD: rcpass123
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - infra_net
+
+volumes:
+  mariadb_data:
+
+networks:
+  assr-net:
+    external: true    

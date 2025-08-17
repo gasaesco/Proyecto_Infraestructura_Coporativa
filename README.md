@@ -77,6 +77,39 @@ Ramas de feature: feature/<servicio>-<autor> (ej. feature/suricata-elias).
 
 Pull Request con resumen breve de cambios y cómo probarlos.
 
+- Comandos PS a utilizar antes de lanzar Bind9/Mariadb/Roundcube/Mailserver
+
+docker-compose -f dns/docker-compose.yml up -d
+docker-compose -f mariadb/docker-compose.yml up -d
+docker-compose -f mail/docker-compose.yml up -d
+docker-compose -f roundcube/docker-compose.yml up -d
+docker-compose -f openvpn/docker-compose.yml up -d
+
+docker run --rm `
+  -v "${PWD}\docker-mailserver-config:/tmp/docker-mailserver/" `
+  -v maildata:/var/mail `
+  docker.io/mailserver/docker-mailserver:latest setup email add usuario1@empresa.local 123456
+
+docker run --rm `
+  -v "${PWD}\openvpn-data\conf:/etc/openvpn" `
+  kylemanna/openvpn ovpn_genconfig -u udp://REEMPLAZAR_IP
+
+docker run --rm -it `
+  -v "${PWD}\openvpn-data\conf:/etc/openvpn" `
+  kylemanna/openvpn ovpn_initpki
+
+docker run --rm -it `
+  -v "${PWD}\openvpn-data\conf:/etc/openvpn" `
+  kylemanna/openvpn easyrsa build-client-full cliente1 nopass
+
+docker run --rm `
+  -v "${PWD}\openvpn-data\conf:/etc/openvpn" `
+  kylemanna/openvpn ovpn_getclient cliente1 > "${PWD}\cliente1.ovpn"
+
+docker compose up -d openvpn
+
+(Si llega a dar error, es posible que toque agregar la carpeta a la ruta)
+
 👥 Créditos
 
 Equipo ASSR — Infraestructura Corporativa. Cada integrante mantiene su servicio y README específico.

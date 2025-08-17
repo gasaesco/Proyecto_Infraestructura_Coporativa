@@ -1,0 +1,18 @@
+services:
+  openvpn:
+    image: kylemanna/openvpn
+    container_name: openvpn
+    hostname: openvpn.assr.local
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "1194:1194/udp"
+    volumes:
+      - ./openvpn-data/conf:/etc/openvpn
+    restart: unless-stopped
+    networks:
+      - infra_net
+
+networks:
+  assr-net:
+    external: true
